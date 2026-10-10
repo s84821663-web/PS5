@@ -1,0 +1,180 @@
+```html
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10111a">
+  <title>تست دسته PS4 و PS5 | Gamepad Tester</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="logo" href="#">PAD<span>CHECK</span></a>
+    <button id="langBtn" class="secondary-btn">English</button>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <span class="eyebrow">CONTROLLER DIAGNOSTICS</span>
+      <h1>تست دسته PS4 و PS5</h1>
+      <p>بررسی دکمه‌ها، آنالوگ‌ها، مدل و اطلاعات دسته</p>
+      <div id="connection" class="status">دسته متصل نیست</div>
+      <button id="connectBtn" class="primary-btn">اتصال و تست دسته</button>
+      <p class="hint">دسته را با USB یا بلوتوث وصل کنید و سپس یک دکمه آن را فشار دهید.</p>
+    </section>
+
+    <section class="panel">
+      <h2>اطلاعات دسته</h2>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <span>مدل شناسایی‌شده</span>
+          <strong id="controllerModel">نامشخص</strong>
+        </div>
+        <div class="info-card">
+          <span>وضعیت اتصال</span>
+          <strong id="connectionInfo">قطع</strong>
+        </div>
+        <div class="info-card">
+          <span>شماره سریال</span>
+          <strong id="serialNumber">قابل‌خواندن نیست</strong>
+          <small>مرورگر سریال سخت‌افزاری را از Gamepad API دریافت نمی‌کند.</small>
+        </div>
+        <div class="info-card">
+          <span>رنگ اصلی کارخانه</span>
+          <strong id="factoryColor">تأیید نشده</strong>
+          <small id="colorNote">برای تشخیص رنگ رسمی، مدل دقیق یا اطلاعات معتبر محصول لازم است.</small>
+        </div>
+      </div>
+
+      <div class="notice">
+        <strong>نکته مهم درباره اصالت</strong>
+        <p>
+          نام مدل و شناسه‌ای که مرورگر گزارش می‌دهد، به‌تنهایی اصالت دسته را اثبات نمی‌کند.
+          شماره سریال و رنگ کارخانه نیز از طریق اتصال معمولی دسته قابل تأیید نیستند.
+        </p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>تست دکمه‌ها</h2>
+      <p class="muted">هر دکمه را فشار دهید؛ وضعیت آن در لحظه تغییر می‌کند.</p>
+
+      <div class="controller">
+        <div class="stick-area">
+          <div class="stick" id="leftStick">
+            <span class="stick-dot" id="leftDot"></span>
+          </div>
+          <span>آنالوگ چپ</span>
+        </div>
+
+        <div class="center-buttons">
+          <button class="key" data-button="8">VIEW / SHARE</button>
+          <button class="key" data-button="9">MENU / OPTIONS</button>
+          <div class="touchpad">TOUCHPAD</div>
+          <div class="muted" id="buttonCount">۰ دکمه فعال</div>
+        </div>
+
+        <div class="stick-area">
+          <div class="stick" id="rightStick">
+            <span class="stick-dot" id="rightDot"></span>
+          </div>
+          <span>آنالوگ راست</span>
+        </div>
+      </div>
+
+      <div class="keys-grid">
+        <button class="key" data-button="12">↑</button>
+        <button class="key" data-button="13">↓</button>
+        <button class="key" data-button="14">←</button>
+        <button class="key" data-button="15">→</button>
+        <button class="key" data-button="0">✕ / A</button>
+        <button class="key" data-button="1">○ / B</button>
+        <button class="key" data-button="2">□ / X</button>
+        <button class="key" data-button="3">△ / Y</button>
+        <button class="key" data-button="4">L1</button>
+        <button class="key" data-button="5">R1</button>
+        <button class="key" data-button="6">L2</button>
+        <button class="key" data-button="7">R2</button>
+        <button class="key" data-button="10">L3</button>
+        <button class="key" data-button="11">R3</button>
+        <button class="key" data-button="16">HOME / PS</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>تست آنالوگ و تریگرها</h2>
+      <div class="axis-grid">
+        <div class="info-card">
+          <span>آنالوگ چپ X / Y</span>
+          <strong id="leftValues">0.00 / 0.00</strong>
+          <div class="meter"><div id="leftMeter"></div></div>
+        </div>
+        <div class="info-card">
+          <span>آنالوگ راست X / Y</span>
+          <strong id="rightValues">0.00 / 0.00</strong>
+          <div class="meter"><div id="rightMeter"></div></div>
+        </div>
+        <div class="info-card">
+          <span>تریگر L2</span>
+          <strong id="l2Value">0%</strong>
+          <div class="meter"><div id="l2Meter"></div></div>
+        </div>
+        <div class="info-card">
+          <span>تریگر R2</span>
+          <strong id="r2Value">0%</strong>
+          <div class="meter"><div id="r2Meter"></div></div>
+        </div>
+      </div>
+      <p id="stickStatus" class="muted">برای تست آنالوگ، دسته را وصل کنید.</p>
+    </section>
+
+    <section class="panel">
+      <h2>بررسی اطلاعات و اصالت</h2>
+      <div class="info-grid">
+        <div class="info-card">
+          <span>شناسه گزارش‌شده</span>
+          <strong id="deviceId">نامشخص</strong>
+        </div>
+        <div class="info-card">
+          <span>نوع Mapping</span>
+          <strong id="mappingInfo">نامشخص</strong>
+        </div>
+        <div class="info-card">
+          <span>وضعیت اصالت</span>
+          <strong class="warning-text">قابل تأیید نیست</strong>
+          <small>برای بررسی اصالت، شواهد فیزیکی و بررسی معتبر سازنده لازم است.</small>
+        </div>
+        <div class="info-card">
+          <span>رنگ بدنه فعلی</span>
+          <strong>از طریق Gamepad API قابل تشخیص نیست</strong>
+        </div>
+      </div>
+
+      <label class="field-label" for="serialInput">شماره سریال (ورودی دستی، اختیاری)</label>
+      <input id="serialInput" type="text" placeholder="سریال درج‌شده روی برچسب دسته">
+      <label class="field-label" for="colorSelect">رنگ درج‌شده روی جعبه یا فاکتور</label>
+      <select id="colorSelect">
+        <option value="">انتخاب نشده</option>
+        <option value="Midnight Black">Midnight Black</option>
+        <option value="White">White / سفید</option>
+        <option value="Cosmic Red">Cosmic Red</option>
+        <option value="Starlight Blue">Starlight Blue</option>
+        <option value="Other">سایر</option>
+      </select>
+      <button id="saveInfoBtn" class="primary-btn">ثبت اطلاعات واردشده</button>
+      <p id="manualStatus" class="muted">
+        اطلاعات دستی، تأییدشده محسوب نمی‌شوند و در این صفحه ذخیره دائمی نخواهند شد.
+      </p>
+
+      <button id="reportBtn" class="secondary-btn">ساخت گزارش تست</button>
+      <pre id="report" class="report">گزارش هنوز ساخته نشده است.</pre>
+    </section>
+  </main>
+
+  <footer>PADCHECK · ابزار تست دسته بازی</footer>
+  <script src="script.js"></script>
+</body>
+</html>
+```
